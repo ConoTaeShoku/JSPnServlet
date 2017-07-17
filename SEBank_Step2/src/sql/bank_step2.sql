@@ -1,7 +1,13 @@
+drop table reply2;
+drop sequence reply2_seq;
+drop table board2;
+drop sequence board2_seq;
+drop table customer2;
+
 -- SC IT 마스터 웹 프로그램 Step Project : 인터넷 뱅킹
 
 -- 고객 정보 테이블
-create table customer (
+create table customer2 (
 	custid		varchar2(20) primary key,	--고객 아이디
 	password	varchar2(20) not null,		--비밀번호
 	name		varchar2(30) not null,		--고객 이름
@@ -17,9 +23,10 @@ create table board2 (
 	title		varchar2(100) not null,
 	content		varchar2(2000) not null,
 	inputdate	date default sysdate,
-	hits		number(5) default 0
+	hits		number(5) default 0,
+	FOREIGN KEY (id) REFERENCES customer(custid) ON DELETE CASCADE
 );
-create sequence board2_seq
+create sequence board2_seq;
 
 create table reply2 (
 	replynum	number(5) primary key,
@@ -27,9 +34,9 @@ create table reply2 (
 	id			varchar2(20) not null,
 	text		varchar2(200) not null,
 	inputdate	date default sysdate,
-	FOREIGN KEY (boardnum) REFERENCES board2(boardnum)
+	FOREIGN KEY (boardnum) REFERENCES board2(boardnum) ON DELETE CASCADE
 );
-create sequence reply2_seq
+create sequence reply2_seq;
 
 -- 테스트용 고객 데이터 
-insert into customer values ('aaa','aaa', '홍길동', 'aaa@aaa.com', 'personal', '801230-1234567', '서울시');
+insert into customer2 values ('aaa','aaa', '홍길동', 'aaa@aaa.com', 'personal', '801230-1234567', '서울시');

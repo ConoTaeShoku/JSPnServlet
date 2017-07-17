@@ -13,7 +13,7 @@ public class CustomerDAO {
 		int cnt = 0;
 		try {
 			Connection con = ConnectionManager.getConnection();
-			String sql = "select * from customer where custid = ? and password = ?";
+			String sql = "select * from customer2 where custid = ? and password = ?";
 			PreparedStatement stat = con.prepareStatement(sql);
 			stat.setString(1, custid);
 			stat.setString(2, password);
@@ -29,7 +29,7 @@ public class CustomerDAO {
 		Customer c = null;
 		try {
 			Connection con = ConnectionManager.getConnection();
-			String sql = "select * from customer where custid = ?";
+			String sql = "select * from customer2 where custid = ?";
 			PreparedStatement stat = con.prepareStatement(sql);
 			stat.setString(1, custid);
 			ResultSet rs = stat.executeQuery();
@@ -54,7 +54,7 @@ public class CustomerDAO {
 		int cnt = 0;
 		try {
 			Connection con = ConnectionManager.getConnection();
-			String sql = "insert into customer values (?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into customer2 values (?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement stat = con.prepareStatement(sql);
 			stat.setString(1, c.getCustid());
 			stat.setString(2, c.getPassword());
@@ -75,7 +75,7 @@ public class CustomerDAO {
 		int cnt = 0;
 		try {
 			Connection con = ConnectionManager.getConnection();
-			String sql = "update customer set password = ?, name = ?, email = ?,"
+			String sql = "update customer2 set password = ?, name = ?, email = ?,"
 					+ "division = ?, idno = ?, address = ? where custid = ?";
 			PreparedStatement stat = con.prepareStatement(sql);
 			stat.setString(1, c.getPassword());
@@ -97,7 +97,7 @@ public class CustomerDAO {
 		int cnt = 0;
 		try {
 			Connection con = ConnectionManager.getConnection();
-			String sql = "delete from customer where custid = ?";
+			String sql = "delete from customer2 where custid = ?";
 			PreparedStatement stat = con.prepareStatement(sql);
 			stat.setString(1, myid);
 			cnt = stat.executeUpdate();
@@ -111,7 +111,7 @@ public class CustomerDAO {
 	public int totnum() {
 		try {
 			Connection con = ConnectionManager.getConnection();
-			String sql = "select custid, count(custid) from customer";
+			String sql = "select custid, count(custid) from customer2";
 			PreparedStatement stat = con.prepareStatement(sql);
 			ResultSet res = stat.executeQuery();
 			while (res.next()) {
@@ -142,7 +142,7 @@ public class CustomerDAO {
 		ArrayList<Customer> clist = new ArrayList<>();
 		try {
 			Connection con = ConnectionManager.getConnection();
-			String sql = "select * from customer";
+			String sql = "select * from customer2";
 			PreparedStatement stat = con.prepareStatement(sql);
 			ResultSet rs = stat.executeQuery();
 			while (rs.next()) {
